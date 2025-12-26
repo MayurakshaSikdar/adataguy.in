@@ -117,8 +117,12 @@
               <h3 class="resume-title">Certifications & Learnings</h3>
               <div class="resume-content">
                 <ul>
-                  <li>AWS Certified Data Analytics - Specialty (2023)</li>
+                  <li>AWS Certified Data Engineer - Associate (2025)</li>
+                  <li>Microsoft Azure DevOps Engineer Expert (2025)</li>
+                  <li>Microsoft Azure AI Engineer Associate (2025)</li>
+                  <li>Microsoft Azure Administrator Associate (2025)</li>
                   <li>GCP Associate Cloud Engineer (2024)</li>
+                  <li>AWS Certified Data Analytics - Specialty (2023)</li>
                   <li>AWS Partner: Generative AI Essentials (2023)</li>
                   <li>AWS Certified Developer - Associate (2021)</li>
                   <li>Python (5-star Gold Level) - HackerRank</li>
@@ -134,7 +138,7 @@
                 <ul>
                   <li><strong>Programming:</strong> Python, Java, JavaScript, Shell Script</li>
                   <li><strong>Databases:</strong> MySQL, MongoDB, DynamoDB, SQL, Elasticsearch, Kendra</li>
-                  <li><strong>Cloud:</strong> AWS (2x certified), GCP (1x certified), Azure</li>
+                  <li><strong>Cloud:</strong> AWS (5x certified), Azure (5x certified), GCP (1x certified)</li>
                   <li><strong>LLM Development:</strong> LangChain, Hugging Face, OpenAI API, RAG, Vector DBs, Streamlit
                   </li>
                   <li><strong>DevOps Tools:</strong> Git, Jenkins, Docker, Kubernetes, Jira, Confluence, ELK Stack</li>
@@ -437,37 +441,53 @@
     </p>
 
     <script>
-      // Replace with your Supabase project credentials
       const SUPABASE_URL = "https://opykolwurvjzpfqxwsil.supabase.co";
       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9weWtvbHd1cnZqenBmcXh3c2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NDc5MTQsImV4cCI6MjA3NDMyMzkxNH0.m3lPm2yTfMI89Y8Vjyf4sbOTEMvKMF6kxzwiu-Du1pQ";
 
-
-      const { createClient } = window.supabase;
-      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-      async function updateVisitorCount() {
+      document.addEventListener('DOMContentLoaded', async () => {
         try {
-          // Increment visits atomically via RPC
-          await supabase.rpc("increment_visits");
+          // Creating client
+          const { createClient } = window.supabase;
+          const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-          // Fetch latest count
-          let { data: latest, error } = await supabase
+          console.log("Supabase client created");
+
+          // Get current count
+          const { data: current, error: fetchError } = await supabase
             .from("visits")
             .select("count")
             .eq("id", 1)
             .single();
 
-          if (error) {
-            console.error("Error fetching visits:", error);
-          } else {
-            document.getElementById("visits").textContent = latest.count;
+          if (fetchError) {
+            console.error("Error fetching current count:", fetchError);
+            return;
+          }
+          // Increment visits
+          const { error: rpcError } = await supabase.rpc("increment_visits");
+
+          if (rpcError) {
+            console.error("Error incrementing visits:", rpcError);
+            return;
+          }
+
+          // Fetch updated count
+          const { data: updated, error: updateError } = await supabase
+            .from("visits")
+            .select("count")
+            .eq("id", 1)
+            .single();
+
+          if (updateError) {
+            console.error("Error fetching updated count:", updateError);
+          } else if (updated) {
+            document.getElementById("visits").textContent = updated.count;
+            console.log("Updated to:", updated.count);
           }
         } catch (err) {
           console.error("Unexpected error:", err);
         }
-      }
-
-      updateVisitorCount();
+      });
     </script>
   </footer>
 

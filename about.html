@@ -295,7 +295,7 @@
           <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
             <div class="skill-box">
               <h3>AWS Cloud</h3>
-              <p>2x Certified professional;<br />Glue, Lambda, Redshift, S3, EventBridge, API Gateway, etc.</p>
+              <p>5x Certified professional;<br />Glue, Lambda, Redshift, S3, EventBridge, API Gateway, etc.</p>
               <span class="text-end d-block">94%</span>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
@@ -358,7 +358,7 @@
           <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="700">
             <div class="skill-box">
               <h3>Cloud Platforms</h3>
-              <p>AWS (2x Pro Certs), GCP (Associate Cert), Azure ETL pipelines.</p>
+              <p>AWS (5x Pro Certs), GCP (Associate Cert), Azure ETL pipelines.</p>
               <span class="text-end d-block">85%</span>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
@@ -422,10 +422,67 @@
                   <div class="col-lg-6">
                     <div class="swiper-slide">
                       <div class="certification-item text-center">
-                        <img src="assets/img/certs/aws-specialty.png" class="img-fluid cert-img"
-                          alt="AWS Data Analytics" style="max-width: 300px; height: auto;">
-                        <h3>AWS Certified Data Analytics - Specialty</h3>
-                        <h4>Issued: 2023</h4>
+                        <img src="assets/img/certs/aws-data-engineer.png" class="img-fluid cert-img"
+                          alt="AWS Data Engineer" style="max-width: 300px; height: auto;">
+                        <h3>AWS Certified Data Engineer - Associate</h3>
+                        <h4>Issued: 2025</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End certification item -->
+
+            <!-- Certification Item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="swiper-slide">
+                      <div class="certification-item text-center">
+                        <img src="assets/img/certs/microsoft-azure-devops-expert.svg" class="img-fluid cert-img"
+                          alt="Azure DevOps Engineer" style="max-width: 300px; height: auto;">
+                        <h3>Microsoft Azure DevOps Engineer Expert</h3>
+                        <h4>Issued: 2025</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End certification item -->
+
+            <!-- Certification Item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="swiper-slide">
+                      <div class="certification-item text-center">
+                        <img src="assets/img/certs/microsoft-azure-ai-associate.svg" class="img-fluid cert-img"
+                          alt="Azure AI Engineer" style="max-width: 300px; height: auto;">
+                        <h3>Microsoft Azure AI Engineer Associate</h3>
+                        <h4>Issued: 2025</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End certification item -->
+
+            <!-- Certification Item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="swiper-slide">
+                      <div class="certification-item text-center">
+                        <img src="assets/img/certs/microsoft-azure-admin-associate.svg" class="img-fluid cert-img"
+                          alt="Azure Administrator Associate" style="max-width: 300px; height: auto;">
+                        <h3>Microsoft Azure Administrator Associate</h3>
+                        <h4>Issued: 2025</h4>
                       </div>
                     </div>
                   </div>
@@ -445,6 +502,25 @@
                           style="max-width: 300px; height: auto;">
                         <h3>GCP Associate Cloud Engineer</h3>
                         <h4>Issued: 2024</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End certification item -->
+
+            <!-- Certification Item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="swiper-slide">
+                      <div class="certification-item text-center">
+                        <img src="assets/img/certs/aws-specialty.png" class="img-fluid cert-img"
+                          alt="AWS Data Analytics" style="max-width: 300px; height: auto;">
+                        <h3>AWS Certified Data Analytics - Specialty</h3>
+                        <h4>Issued: 2023</h4>
                       </div>
                     </div>
                   </div>
@@ -890,37 +966,53 @@
     </p>
 
     <script>
-      // Replace with your Supabase project credentials
       const SUPABASE_URL = "https://opykolwurvjzpfqxwsil.supabase.co";
       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9weWtvbHd1cnZqenBmcXh3c2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NDc5MTQsImV4cCI6MjA3NDMyMzkxNH0.m3lPm2yTfMI89Y8Vjyf4sbOTEMvKMF6kxzwiu-Du1pQ";
 
-
-      const { createClient } = window.supabase;
-      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-      async function updateVisitorCount() {
+      document.addEventListener('DOMContentLoaded', async () => {
         try {
-          // Increment visits atomically via RPC
-          await supabase.rpc("increment_visits");
+          // Creating client
+          const { createClient } = window.supabase;
+          const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-          // Fetch latest count
-          let { data: latest, error } = await supabase
+          console.log("Supabase client created");
+
+          // Get current count
+          const { data: current, error: fetchError } = await supabase
             .from("visits")
             .select("count")
             .eq("id", 1)
             .single();
 
-          if (error) {
-            console.error("Error fetching visits:", error);
-          } else {
-            document.getElementById("visits").textContent = latest.count;
+          if (fetchError) {
+            console.error("Error fetching current count:", fetchError);
+            return;
+          }
+          // Increment visits
+          const { error: rpcError } = await supabase.rpc("increment_visits");
+
+          if (rpcError) {
+            console.error("Error incrementing visits:", rpcError);
+            return;
+          }
+
+          // Fetch updated count
+          const { data: updated, error: updateError } = await supabase
+            .from("visits")
+            .select("count")
+            .eq("id", 1)
+            .single();
+
+          if (updateError) {
+            console.error("Error fetching updated count:", updateError);
+          } else if (updated) {
+            document.getElementById("visits").textContent = updated.count;
+            console.log("Updated to:", updated.count);
           }
         } catch (err) {
           console.error("Unexpected error:", err);
         }
-      }
-
-      updateVisitorCount();
+      });
     </script>
   </footer>
 

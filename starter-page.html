@@ -121,37 +121,53 @@
     </p>
 
     <script>
-      // Replace with your Supabase project credentials
       const SUPABASE_URL = "https://opykolwurvjzpfqxwsil.supabase.co";
       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9weWtvbHd1cnZqenBmcXh3c2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NDc5MTQsImV4cCI6MjA3NDMyMzkxNH0.m3lPm2yTfMI89Y8Vjyf4sbOTEMvKMF6kxzwiu-Du1pQ";
 
-
-      const { createClient } = window.supabase;
-      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-      async function updateVisitorCount() {
+      document.addEventListener('DOMContentLoaded', async () => {
         try {
-          // Increment visits atomically via RPC
-          await supabase.rpc("increment_visits");
+          // Creating client
+          const { createClient } = window.supabase;
+          const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-          // Fetch latest count
-          let { data: latest, error } = await supabase
+          console.log("Supabase client created");
+
+          // Get current count
+          const { data: current, error: fetchError } = await supabase
             .from("visits")
             .select("count")
             .eq("id", 1)
             .single();
 
-          if (error) {
-            console.error("Error fetching visits:", error);
-          } else {
-            document.getElementById("visits").textContent = latest.count;
+          if (fetchError) {
+            console.error("Error fetching current count:", fetchError);
+            return;
+          }
+          // Increment visits
+          const { error: rpcError } = await supabase.rpc("increment_visits");
+
+          if (rpcError) {
+            console.error("Error incrementing visits:", rpcError);
+            return;
+          }
+
+          // Fetch updated count
+          const { data: updated, error: updateError } = await supabase
+            .from("visits")
+            .select("count")
+            .eq("id", 1)
+            .single();
+
+          if (updateError) {
+            console.error("Error fetching updated count:", updateError);
+          } else if (updated) {
+            document.getElementById("visits").textContent = updated.count;
+            console.log("Updated to:", updated.count);
           }
         } catch (err) {
           console.error("Unexpected error:", err);
         }
-      }
-
-      updateVisitorCount();
+      });
     </script>
   </footer>
 
